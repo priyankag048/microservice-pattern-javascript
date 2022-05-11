@@ -10,5 +10,8 @@
     "eslint-config-airbnb-base": "latest",
     "eslint-plugin-import": "^2.25.2",
     "jest": "^28.1.0"
+  },
+  "scripts": {
+    "lint": "eslint --fix packages"
   }
 }
