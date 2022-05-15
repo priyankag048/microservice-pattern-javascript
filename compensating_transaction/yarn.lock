@@ -402,8 +402,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ct/api-gateway@workspace:packages/api-gateway"
   dependencies:
+    "@ct/utilities": "workspace:*"
     express: ^4.18.1
     got: ^12.0.4
+    helmet: ^5.0.2
   languageName: unknown
   linkType: soft
 
@@ -411,7 +413,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ct/payment@workspace:packages/payment"
   dependencies:
+    "@ct/utilities": "workspace:*"
     express: ^4.18.1
+    helmet: ^5.0.2
   languageName: unknown
   linkType: soft
 

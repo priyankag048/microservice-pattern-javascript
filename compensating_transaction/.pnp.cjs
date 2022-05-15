@@ -824,8 +824,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/api-gateway/",\
           "packageDependencies": [\
             ["@ct/api-gateway", "workspace:packages/api-gateway"],\
+            ["@ct/utilities", "workspace:packages/utilities"],\
             ["express", "npm:4.18.1"],\
-            ["got", "npm:12.0.4"]\
+            ["got", "npm:12.0.4"],\
+            ["helmet", "npm:5.0.2"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -835,7 +837,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/payment/",\
           "packageDependencies": [\
             ["@ct/payment", "workspace:packages/payment"],\
-            ["express", "npm:4.18.1"]\
+            ["@ct/utilities", "workspace:packages/utilities"],\
+            ["express", "npm:4.18.1"],\
+            ["helmet", "npm:5.0.2"]\
           ],\
           "linkType": "SOFT"\
         }]\
