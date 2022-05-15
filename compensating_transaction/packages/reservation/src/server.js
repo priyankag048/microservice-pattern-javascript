@@ -14,6 +14,11 @@ const app = express();
 app.use(express.json());
 app.use(helmet());
 
+app.get('/healthcheck', (_req, res) => {
+  res.status(200).json({
+    message: 'Reservation service is healthy'
+  });
+})
 app.use('/seat', reservationRouter);
 
 app.listen(PORT, () => {

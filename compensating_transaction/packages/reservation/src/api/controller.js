@@ -2,7 +2,11 @@ import services from './service.js';
 import logger from '../utils.js';
 
 const {
-  getAvailableSeats, checkSeatAvailability, updateSeatReservation, createReservation,
+  getAvailableSeats,
+  checkSeatAvailability, 
+  updateSeatReservation, 
+  createReservation, 
+  removeReservation
 } = services;
 
 export default {
@@ -62,10 +66,42 @@ export default {
         message: HTTP_STATUS_CODE === 200 ? 'success' : 'failed',
       });
     } catch (error) {
+      logger.error(error.message);
       res.status(500).json({
         context: error.message,
         message: 'failed',
       });
     }
   },
+  async removeSeatReservation(req, res) {
+    const { id } = req.params;
+    let context = {};
+    try{
+      const rows = await removeReservation(id);
+      if(rows.length === 0) {
+        logger.info(`No Reservation available under booking reference ${id}`);
+        context = {
+          ...context,
+          message: `No Reservation available under booking reference ${id}`
+        }
+      } else {
+        const { seat_id: seatId } = rows[0];
+        const [row] = await updateSeatReservation(seatId, false);
+        logger.info(`Removal of seat reservation successful for seat number ${row.seat_number}`);
+        context = {
+          ...context,
+          message: `Removal of seat reservation successful for seat number ${row.seat_number}`
+        }
+      }
+      res.status(200).json({
+        context,
+        message: 'success'
+      });
+    }catch (error) {
+      res.status(500).json({
+        context: error.message,
+        message: 'failed'
+      });
+    }
+  }
 };

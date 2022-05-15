@@ -35,7 +35,7 @@ export default {
     };
   },
   async updateSeatReservation(seatId, reserve) {
-    const query = 'UPDATE seat SET booked=$1 WHERE id=$2';
+    const query = 'UPDATE seat SET booked=$1 WHERE id=$2 RETURNING seat_number';
     const values = [reserve, seatId];
     return database.execute(query, values);
   },
@@ -70,4 +70,9 @@ export default {
       };
     }
   },
+  async removeReservation(bookingId) {
+    const query = 'DELETE FROM booking WHERE id=$1 RETURNING seat_id';
+    const values = [bookingId];
+    return database.execute(query, values);
+  }
 };

@@ -1,3 +1,3 @@
 import { loggingService } from '@ct/utilities';
 
-export default loggingService.createLogger('@ct/reservation');
+export default loggingService('@ct/reservation');

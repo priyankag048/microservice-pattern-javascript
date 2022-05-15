@@ -4,7 +4,7 @@ import loggerService from './logger.js';
 
 const { Pool } = pg;
 const { DATABASE_CONFIG } = config;
-const logger = loggerService.createLogger('database');
+const logger = loggerService('database');
 class Database {
   #pool;
   constructor() {
